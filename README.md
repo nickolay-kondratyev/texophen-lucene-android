@@ -32,6 +32,14 @@ in 'gophoxes for Android'.
 
 ```
 
+=========================================
+           BUILD NOTES
+  -------------------------------------
+
+ant ivy-bootstrap -Divy_install_path=/workspaces/lucene-android/lucene-7.3.0/build/core/.ant/lib
+
+ant -lib /workspaces/lucene-android/lucene-7.3.0/build/core/.ant/lib jar
+
 
 $
 ```
