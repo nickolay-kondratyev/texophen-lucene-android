@@ -61,7 +61,7 @@ public abstract class AttributeFactory {
   
   private static final class DefaultAttributeFactory extends AttributeFactory {
     /*
-    private final Class_Value<MethodHandle> constructors = new Class_Value<MethodHandle>() {
+    private final Class__Value<MethodHandle> constructors = new Class__Value<MethodHandle>() {
       @Override
       protected MethodHandle computeValue(Class<?> attClass) {
         return findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));
@@ -69,14 +69,19 @@ public abstract class AttributeFactory {
     };
     */
 
+    private final org.apache.lucene.util.ADClassValue<MethodHandle> constructors = new org.apache.lucene.util.ADClassValue<MethodHandle>() {
+      @Override
+      protected MethodHandle computeValue(Class<?> attClass) {
+        return findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));
+      }
+    };
+
     DefaultAttributeFactory() {}
 
     @Override
     public AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
       try {
-        //return (AttributeImpl) constructors.get(attClass).invokeExact();
-        MethodHandle mh = findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));
-        return (AttributeImpl) mh.invokeExact();
+        return (AttributeImpl) constructors.get(attClass).invokeExact();
       } catch (Error | RuntimeException e) {
         throw e;
       } catch (Throwable e) {

@@ -148,7 +148,7 @@ public class AttributeSource {
   
   /** a cache that stores all interfaces for known implementation classes for performance (slow reflection) */
   /*
-  private static final Class_Value<Class<? extends Attribute>[]> implInterfaces = new Class_Value<Class<? extends Attribute>[]>() {
+  private static final Class__Value<Class<? extends Attribute>[]> implInterfaces = new Class__Value<Class<? extends Attribute>[]>() {
     @Override
     protected Class<? extends Attribute>[] computeValue(Class<?> clazz) {
       final Set<Class<? extends Attribute>> intfSet = new LinkedHashSet<>();
@@ -169,26 +169,28 @@ public class AttributeSource {
   };
   */
 
-  private static Class<? extends Attribute>[] __computeValue(Class<?> clazz) {
-    final Set<Class<? extends Attribute>> intfSet = new LinkedHashSet<>();
-    // find all interfaces that this attribute instance implements
-    // and that extend the Attribute interface
-    do {
-      for (Class<?> curInterface : clazz.getInterfaces()) {
-        if (curInterface != Attribute.class && Attribute.class.isAssignableFrom(curInterface)) {
-          intfSet.add(curInterface.asSubclass(Attribute.class));
+  private static final org.apache.lucene.util.ADClassValue<Class<? extends Attribute>[]> implInterfaces = new org.apache.lucene.util.ADClassValue<Class<? extends Attribute>[]>() {
+    @Override
+    protected Class<? extends Attribute>[] computeValue(Class<?> clazz) {
+      final Set<Class<? extends Attribute>> intfSet = new LinkedHashSet<>();
+      // find all interfaces that this attribute instance implements
+      // and that extend the Attribute interface
+      do {
+        for (Class<?> curInterface : clazz.getInterfaces()) {
+          if (curInterface != Attribute.class && Attribute.class.isAssignableFrom(curInterface)) {
+            intfSet.add(curInterface.asSubclass(Attribute.class));
+          }
         }
-      }
-      clazz = clazz.getSuperclass();
-    } while (clazz != null);
-    @SuppressWarnings({"unchecked", "rawtypes"}) final Class<? extends Attribute>[] a =
-        intfSet.toArray(new Class[intfSet.size()]);
-    return a;
-  }
+        clazz = clazz.getSuperclass();
+      } while (clazz != null);
+      @SuppressWarnings({"unchecked", "rawtypes"}) final Class<? extends Attribute>[] a =
+          intfSet.toArray(new Class[intfSet.size()]);
+      return a;
+    }
+  };
   
   static Class<? extends Attribute>[] getAttributeInterfaces(final Class<? extends AttributeImpl> clazz) {
-    //return implInterfaces.get(clazz);
-    return __computeValue(clazz);
+    return implInterfaces.get(clazz);
   }
   
   /** <b>Expert:</b> Adds a custom AttributeImpl instance with one or more Attribute interfaces.
