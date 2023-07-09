@@ -6,8 +6,8 @@ Specification-Title: Lucene Search Engine: facet
 Specification-Version: 7.3.0
 Specification-Vendor: The Apache Software Foundation
 Implementation-Title: org.apache.lucene
-Implementation-Version: 7.3.0-SNAPSHOT 5b4ac49ae711fee750a0082b08dc6c1
- 0c4c3b66d - codespace - 2023-07-09 21:01:09
+Implementation-Version: 7.3.0-SNAPSHOT 21e2d1388092ba29c94667e07e3d2b4
+ d50783309 - codespace - 2023-07-09 21:32:56
 Implementation-Vendor: The Apache Software Foundation
 X-Compile-Source-JDK: 8
 X-Compile-Target-JDK: 8

@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="jetty"
 		confs="http, jetty, start, servlet, logging"
-		date="20230709210111"/>
+		date="20230709213258"/>
 	<dependencies>
 		<module organisation="org.eclipse.jetty" name="jetty-continuation">
 			<revision name="9.4.8.v20171121" status="release" pubdate="20171121213804" resolver="public" artresolver="main" homepage="http://www.eclipse.org/jetty" downloaded="false" searched="false" default="false" conf="master" position="5">
