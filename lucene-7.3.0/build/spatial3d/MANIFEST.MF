@@ -6,8 +6,8 @@ Specification-Title: Lucene Search Engine: spatial3d
 Specification-Version: 7.3.0
 Specification-Vendor: The Apache Software Foundation
 Implementation-Title: org.apache.lucene
-Implementation-Version: 7.3.0-SNAPSHOT 1f1eab26393b0be0065e2ddd689d53d
- bae2857b0 - codespace - 2023-07-09 19:46:24
+Implementation-Version: 7.3.0-SNAPSHOT 5b4ac49ae711fee750a0082b08dc6c1
+ 0c4c3b66d - codespace - 2023-07-09 21:01:12
 Implementation-Vendor: The Apache Software Foundation
 X-Compile-Source-JDK: 8
 X-Compile-Target-JDK: 8

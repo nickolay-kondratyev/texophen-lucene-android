@@ -60,19 +60,23 @@ public abstract class AttributeFactory {
   public static final AttributeFactory DEFAULT_ATTRIBUTE_FACTORY = new DefaultAttributeFactory();
   
   private static final class DefaultAttributeFactory extends AttributeFactory {
-    private final ClassValue<MethodHandle> constructors = new ClassValue<MethodHandle>() {
+    /*
+    private final Class_Value<MethodHandle> constructors = new Class_Value<MethodHandle>() {
       @Override
       protected MethodHandle computeValue(Class<?> attClass) {
         return findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));
       }
     };
+    */
 
     DefaultAttributeFactory() {}
 
     @Override
     public AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
       try {
-        return (AttributeImpl) constructors.get(attClass).invokeExact();
+        //return (AttributeImpl) constructors.get(attClass).invokeExact();
+        MethodHandle mh = findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));
+        return (AttributeImpl) mh.invokeExact();
       } catch (Error | RuntimeException e) {
         throw e;
       } catch (Throwable e) {

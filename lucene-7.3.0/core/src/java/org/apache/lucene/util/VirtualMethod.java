@@ -63,12 +63,19 @@ public final class VirtualMethod<C> {
   private final Class<C> baseClass;
   private final String method;
   private final Class<?>[] parameters;
-  private final ClassValue<Integer> distanceOfClass = new ClassValue<Integer>() {
+
+  /*
+  private final Class_Value<Integer> distanceOfClass = new Class_Value<Integer>() {
     @Override
     protected Integer computeValue(Class<?> subclazz) {
       return Integer.valueOf(reflectImplementationDistance(subclazz));
     }
   };
+  */
+
+  private Integer _computeValue(Class<?> subclazz) {
+    return Integer.valueOf(reflectImplementationDistance(subclazz));
+  }
 
   /**
    * Creates a new instance for the given {@code baseClass} and method declaration.
@@ -97,7 +104,8 @@ public final class VirtualMethod<C> {
    * @return 0 iff not overridden, else the distance to the base class
    */
   public int getImplementationDistance(final Class<? extends C> subclazz) {
-    return distanceOfClass.get(subclazz).intValue();
+    //return distanceOfClass.get(subclazz).intValue();
+    return _computeValue(subclazz).intValue();
   }
   
   /**
