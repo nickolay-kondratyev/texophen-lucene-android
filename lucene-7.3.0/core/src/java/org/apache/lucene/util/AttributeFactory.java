@@ -117,7 +117,8 @@ public abstract class AttributeFactory {
     
     @Override
     public final AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
-      return attClass.isAssignableFrom(clazz) ? createInstance() : delegate.createAttributeInstance(attClass);
+      //return attClass.isAssignableFrom(clazz) ? createInstance() : delegate.createAttributeInstance(attClass);
+      return delegate.createAttributeInstance(attClass);
     }
     
     /** Creates an instance of {@code A}. */

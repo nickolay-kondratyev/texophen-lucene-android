@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="compile"
 		confs="compile"
-		date="20230709231759"/>
+		date="20230709234544"/>
 	<dependencies>
 		<module organisation="org.locationtech.spatial4j" name="spatial4j">
 			<revision name="0.7" status="release" pubdate="20171229160040" resolver="public" artresolver="main" homepage="https://projects.eclipse.org/projects/locationtech.spatial4j" downloaded="false" searched="false" default="false" conf="master" position="4">
