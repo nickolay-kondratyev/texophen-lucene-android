@@ -36,6 +36,21 @@ import org.apache.lucene.analysis.WordlistLoader;
  */
 public final class StandardAnalyzer extends StopwordAnalyzerBase {
 
+  private static StandardTokenizer __src = null;
+  private static StandardAnalyzer __inst = null;
+
+  public static void inst(StandardAnalyzer v) {
+    __inst = v;
+  }
+
+  public static StandardAnalyzer inst() {
+    return __inst;
+  } 
+
+  public static StandardTokenizer src() {
+    return __src;
+  } 
+
   /** An unmodifiable set containing some common English words that are not usually useful
   for searching.*/
   public static final CharArraySet ENGLISH_STOP_WORDS_SET;
@@ -65,6 +80,7 @@ public final class StandardAnalyzer extends StopwordAnalyzerBase {
    * @param stopWords stop words */
   public StandardAnalyzer(CharArraySet stopWords) {
     super(stopWords);
+    inst(this);
   }
 
   /** Builds an analyzer with the default stop words ({@link #STOP_WORDS_SET}).
@@ -100,8 +116,13 @@ public final class StandardAnalyzer extends StopwordAnalyzerBase {
 
   @Override
   protected TokenStreamComponents createComponents(final String fieldName) {
-    final StandardTokenizer src = new StandardTokenizer();
-    src.setMaxTokenLength(maxTokenLength);
+    StandardTokenizer src = null;
+    if (__src == null) {
+      __src = new StandardTokenizer();
+      __src.setMaxTokenLength(maxTokenLength);
+    }
+    src = __src;
+    
     TokenStream tok = new StandardFilter(src);
     tok = new LowerCaseFilter(tok);
     tok = new StopFilter(tok, stopwords);
@@ -110,7 +131,7 @@ public final class StandardAnalyzer extends StopwordAnalyzerBase {
       protected void setReader(final Reader reader) {
         // So that if maxTokenLength was changed, the change takes
         // effect next time tokenStream is called:
-        src.setMaxTokenLength(StandardAnalyzer.this.maxTokenLength);
+        StandardAnalyzer.src().setMaxTokenLength(StandardAnalyzer.inst().maxTokenLength);
         super.setReader(reader);
       }
     };

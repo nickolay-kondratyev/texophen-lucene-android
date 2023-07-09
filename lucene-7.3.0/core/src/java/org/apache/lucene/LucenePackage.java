@@ -26,4 +26,14 @@ public final class LucenePackage {
   public static Package get() {
     return LucenePackage.class.getPackage();
   }
+
+  private static boolean __isAndroid;
+
+  public static void isAndroid(boolean v) {
+    __isAndroid = v;
+  }
+
+  public static boolean isAndroid() {
+    return __isAndroid;
+  }
 }
