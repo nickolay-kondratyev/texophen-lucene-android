@@ -6,8 +6,8 @@ Specification-Title: Lucene Search Engine: spatial
 Specification-Version: 7.3.0
 Specification-Vendor: The Apache Software Foundation
 Implementation-Title: org.apache.lucene
-Implementation-Version: 7.3.0-SNAPSHOT 954f27979c239ee29d082788bfae181
- 8b35f0926 - codespace - 2023-07-09 23:45:50
+Implementation-Version: 7.3.0-SNAPSHOT 4a3121193f6d825ff48dacbe48e926d
+ 123c70879 - codespace - 2023-07-10 00:38:06
 Implementation-Vendor: The Apache Software Foundation
 X-Compile-Source-JDK: 8
 X-Compile-Target-JDK: 8

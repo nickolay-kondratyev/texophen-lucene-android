@@ -27,13 +27,51 @@ public final class LucenePackage {
     return LucenePackage.class.getPackage();
   }
 
-  private static boolean __isAndroid;
+  public static class Log {
+    public void write(String text) {
+      System.out.println(text);
+    }
+    
+    public void write(Exception e) {
+      e.printStackTrace();
+    }
 
-  public static void isAndroid(boolean v) {
-    __isAndroid = v;
+    public void write(Throwable e) {
+      e.printStackTrace();
+    }
   }
 
-  public static boolean isAndroid() {
-    return __isAndroid;
+  private static Log __log;
+
+  public static Log log() {
+    return __log;
   }
+
+  public static void log(Log v) {
+    __log = v;
+  }
+
+  public static void writeLog(String text) {
+    if (__log == null) {
+      System.out.println(text);
+    } else {
+      __log.write(text);
+    }
+  }
+  
+  public static void writeLog(Exception e) {
+    if (__log == null) {
+      e.printStackTrace();
+    } else {
+      __log.write(e);
+    }
+  }
+
+  public static void writeLog(Throwable e) {
+    if (__log == null) {
+      e.printStackTrace();
+    } else {
+      __log.write(e);
+    }
+  }    
 }

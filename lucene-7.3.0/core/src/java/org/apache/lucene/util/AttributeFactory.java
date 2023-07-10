@@ -81,6 +81,9 @@ public abstract class AttributeFactory {
     @Override
     public AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
       try {
+        String debug = attClass.getName();
+        org.apache.lucene.LucenePackage.writeLog(debug);
+
         return (AttributeImpl) constructors.get(attClass).invokeExact();
       } catch (Error | RuntimeException e) {
         throw e;
