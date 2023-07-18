@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="compile"
 		confs="compile"
-		date="20230710003755"/>
+		date="20230718164003"/>
 	<dependencies>
 		<module organisation="com.ibm.icu" name="icu4j">
 			<revision name="59.1" status="release" pubdate="20170414062200" resolver="public" artresolver="main" homepage="http://icu-project.org/" downloaded="false" searched="false" default="false" conf="master" position="0">

@@ -6,8 +6,8 @@ Specification-Title: Lucene Search Engine: expressions
 Specification-Version: 7.3.0
 Specification-Vendor: The Apache Software Foundation
 Implementation-Title: org.apache.lucene
-Implementation-Version: 7.3.0-SNAPSHOT 4a3121193f6d825ff48dacbe48e926d
- 123c70879 - codespace - 2023-07-10 00:38:03
+Implementation-Version: 7.3.0-SNAPSHOT 4387ee205c4834e4dbdb4a427567ef3
+ c39cd0102 - codespace - 2023-07-18 16:40:08
 Implementation-Vendor: The Apache Software Foundation
 X-Compile-Source-JDK: 8
 X-Compile-Target-JDK: 8

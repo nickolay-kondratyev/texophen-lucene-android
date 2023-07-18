@@ -43,7 +43,10 @@ public abstract class AttributeFactory {
    */
   static final MethodHandle findAttributeImplCtor(Class<? extends AttributeImpl> clazz) {
     try {
-      return lookup.findConstructor(clazz, NO_ARG_CTOR).asType(NO_ARG_RETURNING_ATTRIBUTEIMPL);
+      org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 1: " + lookup.findConstructor(clazz, NO_ARG_CTOR).toString());
+      MethodHandle mh = lookup.findConstructor(clazz, NO_ARG_CTOR).asType(NO_ARG_RETURNING_ATTRIBUTEIMPL);
+      org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 2: " + mh.toString());
+      return mh;
     } catch (NoSuchMethodException | IllegalAccessException e) {
       throw new IllegalArgumentException("Cannot lookup accessible no-arg constructor for: " + clazz.getName(), e);
     }
@@ -72,7 +75,13 @@ public abstract class AttributeFactory {
     private final org.apache.lucene.util.ADClassValue<MethodHandle> constructors = new org.apache.lucene.util.ADClassValue<MethodHandle>() {
       @Override
       protected MethodHandle computeValue(Class<?> attClass) {
-        return findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));
+        Class<? extends Attribute> attClass2 = attClass.asSubclass(Attribute.class);
+        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 1: " + attClass2.getName());
+        Class<? extends AttributeImpl> attClass3 = findImplClass(attClass2); 
+        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 2: " + attClass3.getName());
+        MethodHandle mh = findAttributeImplCtor(attClass3);
+        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 3: " + mh.toString());
+        return mh;
       }
     };
 
@@ -81,10 +90,14 @@ public abstract class AttributeFactory {
     @Override
     public AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
       try {
-        String debug = attClass.getName();
-        org.apache.lucene.LucenePackage.writeLog(debug);
+        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.createAttributeInstance() - 1: " + attClass.getName());
 
-        return (AttributeImpl) constructors.get(attClass).invokeExact();
+        MethodHandle mh = constructors.get(attClass);
+
+        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.createAttributeInstance() - 2: " + attClass.getName());
+        return (AttributeImpl) mh.invokeExact();
+
+        //return (AttributeImpl) constructors.get(attClass).invokeExact();
       } catch (Error | RuntimeException e) {
         throw e;
       } catch (Throwable e) {
@@ -120,8 +133,8 @@ public abstract class AttributeFactory {
     
     @Override
     public final AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
-      //return attClass.isAssignableFrom(clazz) ? createInstance() : delegate.createAttributeInstance(attClass);
-      return delegate.createAttributeInstance(attClass);
+      return attClass.isAssignableFrom(clazz) ? createInstance() : delegate.createAttributeInstance(attClass);
+      //return delegate.createAttributeInstance(attClass);
     }
     
     /** Creates an instance of {@code A}. */
