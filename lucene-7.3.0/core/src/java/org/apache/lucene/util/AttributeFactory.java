@@ -171,7 +171,11 @@ public abstract class AttributeFactory {
       @Override
       protected A createInstance() {
         try {
-          return (A) constr.invokeExact();
+          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 1: " + constr.toString());
+          MethodHandle constr2 = findAttributeImplCtor(clazz);
+          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 2: " + constr2.toString());
+          //return (A) constr.invokeExact();
+          return (A) constr2.invokeExact();
         } catch (Error | RuntimeException e) {
           org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
           org.apache.lucene.LucenePackage.writeLog(e);
