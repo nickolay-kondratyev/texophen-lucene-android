@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="logging"
 		confs="http, jetty, start, servlet, logging"
-		date="20230718194718"/>
+		date="20230718204315"/>
 	<dependencies>
 		<module organisation="commons-logging" name="commons-logging">
 			<revision name="1.1.3" status="release" pubdate="20130516200523" resolver="public" artresolver="main" homepage="http://commons.apache.org/proper/commons-logging/" downloaded="false" searched="false" default="false" conf="master" position="0">

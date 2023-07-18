@@ -175,7 +175,9 @@ public abstract class AttributeFactory {
           MethodHandle constr2 = findAttributeImplCtor(clazz);
           org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 2: " + constr2.toString());
           //return (A) constr.invokeExact();
-          return (A) constr2.invokeExact();
+          Object obj = constr2.invokeExact();
+          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 3: " + obj.getClass().toString());
+          return (A) obj;
         } catch (Error | RuntimeException e) {
           org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
           org.apache.lucene.LucenePackage.writeLog(e);
