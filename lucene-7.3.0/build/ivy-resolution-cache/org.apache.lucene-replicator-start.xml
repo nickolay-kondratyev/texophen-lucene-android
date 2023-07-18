@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="start"
 		confs="http, jetty, start, servlet, logging"
-		date="20230718204315"/>
+		date="20230718233219"/>
 	<dependencies>
 	</dependencies>
 </ivy-report>
