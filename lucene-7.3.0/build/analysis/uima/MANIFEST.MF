@@ -6,8 +6,8 @@ Specification-Title: Lucene Search Engine: analyzers-uima
 Specification-Version: 7.3.0
 Specification-Vendor: The Apache Software Foundation
 Implementation-Title: org.apache.lucene
-Implementation-Version: 7.3.0-SNAPSHOT 4387ee205c4834e4dbdb4a427567ef3
- c39cd0102 - codespace - 2023-07-18 16:40:06
+Implementation-Version: 7.3.0-SNAPSHOT 4f270949353f0b6cb0c7570c5c1576a
+ 4d41cd3c7 - codespace - 2023-07-18 18:24:11
 Implementation-Vendor: The Apache Software Foundation
 X-Compile-Source-JDK: 8
 X-Compile-Target-JDK: 8

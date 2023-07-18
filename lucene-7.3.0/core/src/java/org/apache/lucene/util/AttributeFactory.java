@@ -173,8 +173,12 @@ public abstract class AttributeFactory {
         try {
           return (A) constr.invokeExact();
         } catch (Error | RuntimeException e) {
+          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
+          org.apache.lucene.LucenePackage.writeLog(e);
           throw e;
         } catch (Throwable e) {
+          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
+          org.apache.lucene.LucenePackage.writeLog(e);
           throw new UndeclaredThrowableException(e);
         }
       }

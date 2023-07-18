@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="compile"
 		confs="compile"
-		date="20230718164004"/>
+		date="20230718182409"/>
 	<dependencies>
 		<module organisation="org.apache.opennlp" name="opennlp-maxent">
 			<revision name="3.0.3" status="release" pubdate="20130403130108" resolver="public" artresolver="main" homepage="" downloaded="false" searched="false" default="false" conf="master" position="1">

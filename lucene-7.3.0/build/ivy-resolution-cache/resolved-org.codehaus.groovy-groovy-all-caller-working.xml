@@ -4,7 +4,7 @@
 		module="groovy-all-caller"
 		revision="working"
 		status="integration"
-		publication="20230718163953"
+		publication="20230718182354"
 		default="true"
 	/>
 	<configurations>
