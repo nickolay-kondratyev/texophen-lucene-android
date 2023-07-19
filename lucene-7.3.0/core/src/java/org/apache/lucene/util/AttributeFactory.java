@@ -44,7 +44,12 @@ public abstract class AttributeFactory {
   static final MethodHandle findAttributeImplCtor(Class<? extends AttributeImpl> clazz) {
     try {
       org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 1: " + lookup.findConstructor(clazz, NO_ARG_CTOR).toString());
-      MethodHandle mh = lookup.findConstructor(clazz, NO_ARG_CTOR).asType(NO_ARG_RETURNING_ATTRIBUTEIMPL);
+      MethodHandle mh = null;
+      if (lookup.findConstructor(clazz, NO_ARG_CTOR).toString().endsWith("PackedTokenAttributeImpl")) {
+        mh = lookup.findConstructor(clazz, NO_ARG_CTOR).asType(MethodType.methodType(org.apache.lucene.analysis.tokenattributes.PackedTokenAttributeImpl.class));
+      } else {
+        mh = lookup.findConstructor(clazz, NO_ARG_CTOR).asType(NO_ARG_RETURNING_ATTRIBUTEIMPL);
+      }
       org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 2: " + mh.toString());
       return mh;
     } catch (NoSuchMethodException | IllegalAccessException e) {
