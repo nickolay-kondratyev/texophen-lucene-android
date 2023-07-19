@@ -43,14 +43,14 @@ public abstract class AttributeFactory {
    */
   static final MethodHandle findAttributeImplCtor(Class<? extends AttributeImpl> clazz) {
     try {
-      org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 1: " + lookup.findConstructor(clazz, NO_ARG_CTOR).toString());
+      //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 1: " + lookup.findConstructor(clazz, NO_ARG_CTOR).toString());
       MethodHandle mh = null;
       if (lookup.findConstructor(clazz, NO_ARG_CTOR).toString().endsWith("PackedTokenAttributeImpl")) {
         mh = lookup.findConstructor(clazz, NO_ARG_CTOR).asType(MethodType.methodType(org.apache.lucene.analysis.tokenattributes.PackedTokenAttributeImpl.class));
       } else {
         mh = lookup.findConstructor(clazz, NO_ARG_CTOR).asType(NO_ARG_RETURNING_ATTRIBUTEIMPL);
       }
-      org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 2: " + mh.toString());
+      //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.findAttributeImplCtor() - 2: " + mh.toString());
       return mh;
     } catch (NoSuchMethodException | IllegalAccessException e) {
       throw new IllegalArgumentException("Cannot lookup accessible no-arg constructor for: " + clazz.getName(), e);
@@ -81,11 +81,11 @@ public abstract class AttributeFactory {
       @Override
       protected MethodHandle computeValue(Class<?> attClass) {
         Class<? extends Attribute> attClass2 = attClass.asSubclass(Attribute.class);
-        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 1: " + attClass2.getName());
+        //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 1: " + attClass2.getName());
         Class<? extends AttributeImpl> attClass3 = findImplClass(attClass2); 
-        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 2: " + attClass3.getName());
+        //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 2: " + attClass3.getName());
         MethodHandle mh = findAttributeImplCtor(attClass3);
-        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 3: " + mh.toString());
+        //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.constructors.computeValue() - 3: " + mh.toString());
         return mh;
       }
     };
@@ -95,11 +95,11 @@ public abstract class AttributeFactory {
     @Override
     public AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
       try {
-        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.createAttributeInstance() - 1: " + attClass.getName());
+        //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.createAttributeInstance() - 1: " + attClass.getName());
 
         MethodHandle mh = constructors.get(attClass);
 
-        org.apache.lucene.LucenePackage.writeLog("AttributeFactory.createAttributeInstance() - 2: " + attClass.getName());
+        //org.apache.lucene.LucenePackage.writeLog("AttributeFactory.createAttributeInstance() - 2: " + attClass.getName());
         return (AttributeImpl) mh.invokeExact();
 
         //return (AttributeImpl) constructors.get(attClass).invokeExact();
@@ -176,20 +176,20 @@ public abstract class AttributeFactory {
       @Override
       protected A createInstance() {
         try {
-          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 1: " + constr.toString());
+          //org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 1: " + constr.toString());
           MethodHandle constr2 = findAttributeImplCtor(clazz);
-          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 2: " + constr2.toString());
+          //org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 2: " + constr2.toString());
           //return (A) constr.invokeExact();
           Object obj = constr2.invoke();
-          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 3: " + obj.getClass().toString());
+          //org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - 3: " + obj.getClass().toString());
           return (A)obj;
         } catch (Error | RuntimeException e) {
-          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
-          org.apache.lucene.LucenePackage.writeLog(e);
+          //org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
+          //org.apache.lucene.LucenePackage.writeLog(e);
           throw e;
         } catch (Throwable e) {
-          org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
-          org.apache.lucene.LucenePackage.writeLog(e);
+          //org.apache.lucene.LucenePackage.writeLog("StaticImplementationAttributeFactory<A>.createInstance() - EC: ");
+          //org.apache.lucene.LucenePackage.writeLog(e);
           throw new UndeclaredThrowableException(e);
         }
       }

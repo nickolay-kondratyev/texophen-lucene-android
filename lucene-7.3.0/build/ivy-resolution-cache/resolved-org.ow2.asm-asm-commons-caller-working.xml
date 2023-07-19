@@ -4,7 +4,7 @@
 		module="asm-commons-caller"
 		revision="working"
 		status="integration"
-		publication="20230719064307"
+		publication="20230719071029"
 		default="true"
 	/>
 	<configurations>

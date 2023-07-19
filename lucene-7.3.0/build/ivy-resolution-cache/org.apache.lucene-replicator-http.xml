@@ -7,7 +7,7 @@
 		revision="working@codespaces-0c7645"
 		conf="http"
 		confs="http, jetty, start, servlet, logging"
-		date="20230719064326"/>
+		date="20230719071052"/>
 	<dependencies>
 		<module organisation="org.apache.httpcomponents" name="httpclient">
 			<revision name="4.5.3" status="release" pubdate="20170121160023" resolver="public" artresolver="main" homepage="http://hc.apache.org/httpcomponents-client" downloaded="false" searched="false" default="false" conf="master" position="0">
