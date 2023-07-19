@@ -41,6 +41,7 @@ public class PackedTokenAttributeImpl extends CharTermAttributeImpl
 
   /** Constructs the attribute implementation. */
   public PackedTokenAttributeImpl() {
+    super();
   }
 
   /**

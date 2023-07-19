@@ -36,7 +36,9 @@ public class CharTermAttributeImpl extends AttributeImpl implements CharTermAttr
   protected BytesRefBuilder builder = new BytesRefBuilder();
   
   /** Initialize this attribute with empty term text */
-  public CharTermAttributeImpl() {}
+  public CharTermAttributeImpl() {
+    super();
+  }
 
   @Override
   public final void copyBuffer(char[] buffer, int offset, int length) {
